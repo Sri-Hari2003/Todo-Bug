@@ -16,7 +16,10 @@ const MaxTodoLimitBug = () => {
   };
 
   const addTodo = () => {
-    
+    if (!todoValue.trim()) { // Check if todoValue is empty or contains only whitespace
+      alert('Please enter a non-empty todo!');
+      return;
+    }
 
     const newId = Math.max(...todos.map(todo => todo.id), 0) + 1;
     const newTodo = { id: newId, text: todoValue };
@@ -27,7 +30,13 @@ const MaxTodoLimitBug = () => {
   };
 
   const deleteTodo = (idToDelete) => {
-    console.log("Deleted todo with id:", idToDelete);
+    const updatedTodos = todos.filter(todo => todo.id !== idToDelete);
+    setTodos(updatedTodos);
+    setCheckedTodos(prevState => {
+      const updatedCheckedTodos = { ...prevState };
+      delete updatedCheckedTodos[idToDelete];
+      return updatedCheckedTodos;
+    });
   };
 
   const toggleTodoColor = (id) => {
@@ -38,7 +47,7 @@ const MaxTodoLimitBug = () => {
     <div className="todo-container">
       <h2 className="title">Todo List (Maximum limit: 10)</h2>
       <input
-        type="number"
+        type="text" // Changed type to text to allow any string input
         value={todoValue}
         onChange={handleInputChange}
         placeholder="Enter todo text"
