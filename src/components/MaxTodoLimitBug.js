@@ -16,10 +16,7 @@ const MaxTodoLimitBug = () => {
   };
 
   const addTodo = () => {
-    if (todos.length >= 8) {
-      alert('Maximum limit of 15 todo items reached!');
-      return;
-    }
+    
 
     const newId = Math.max(...todos.map(todo => todo.id), 0) + 1;
     const newTodo = { id: newId, text: todoValue };
