@@ -45,7 +45,7 @@ const MaxTodoLimitBug = () => {
 
   return (
     <div className="todo-container">
-      <h2 className="title">Todo List (Maximum limit: 10)</h2>
+      <h2 className="title">Todo List </h2>
       <input
         type="text" // Changed type to text to allow any string input
         value={todoValue}
